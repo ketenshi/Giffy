@@ -15,6 +15,10 @@
 		4457D0F11D8657EC001A4291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4457D0F01D8657EC001A4291 /* Assets.xcassets */; };
 		4457D0F41D8657EC001A4291 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4457D0F21D8657EC001A4291 /* LaunchScreen.storyboard */; };
 		4457D0FF1D8657EC001A4291 /* GiffyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457D0FE1D8657EC001A4291 /* GiffyTests.m */; };
+		4457D10A1D8663C5001A4291 /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 4457D1091D8663C5001A4291 /* tags.json */; };
+		44C17D0B1D88B6490068A5E4 /* GifDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D0A1D88B6490068A5E4 /* GifDetailViewController.m */; };
+		44C17D0E1D88BE7D0068A5E4 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */; };
+		44C835AF1D8857A800993F3E /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C835AE1D8857A800993F3E /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,13 @@
 		4457D0FA1D8657EC001A4291 /* GiffyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiffyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4457D0FE1D8657EC001A4291 /* GiffyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiffyTests.m; sourceTree = "<group>"; };
 		4457D1001D8657EC001A4291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4457D1091D8663C5001A4291 /* tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; };
+		44C17D091D88B6490068A5E4 /* GifDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifDetailViewController.h; sourceTree = "<group>"; };
+		44C17D0A1D88B6490068A5E4 /* GifDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifDetailViewController.m; sourceTree = "<group>"; };
+		44C17D0C1D88BE7D0068A5E4 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		44C835AD1D8857A800993F3E /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		44C835AE1D8857A800993F3E /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +98,18 @@
 				4457D0E51D8657EC001A4291 /* AppDelegate.m */,
 				4457D0E71D8657EC001A4291 /* ViewController.h */,
 				4457D0E81D8657EC001A4291 /* ViewController.m */,
+				44C835AD1D8857A800993F3E /* TableViewController.h */,
+				44C835AE1D8857A800993F3E /* TableViewController.m */,
+				44C17D091D88B6490068A5E4 /* GifDetailViewController.h */,
+				44C17D0A1D88B6490068A5E4 /* GifDetailViewController.m */,
+				44C17D0C1D88BE7D0068A5E4 /* TableViewCell.h */,
+				44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */,
 				4457D0EA1D8657EC001A4291 /* Main.storyboard */,
 				4457D0F01D8657EC001A4291 /* Assets.xcassets */,
 				4457D0F21D8657EC001A4291 /* LaunchScreen.storyboard */,
 				4457D0F51D8657EC001A4291 /* Info.plist */,
 				4457D0ED1D8657EC001A4291 /* Giffy.xcdatamodeld */,
+				4457D1091D8663C5001A4291 /* tags.json */,
 				4457D0E11D8657EC001A4291 /* Supporting Files */,
 			);
 			path = Giffy;
@@ -198,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4457D10A1D8663C5001A4291 /* tags.json in Resources */,
 				4457D0F41D8657EC001A4291 /* LaunchScreen.storyboard in Resources */,
 				4457D0F11D8657EC001A4291 /* Assets.xcassets in Resources */,
 				4457D0EC1D8657EC001A4291 /* Main.storyboard in Resources */,
@@ -220,7 +239,10 @@
 			files = (
 				4457D0E91D8657EC001A4291 /* ViewController.m in Sources */,
 				4457D0E61D8657EC001A4291 /* AppDelegate.m in Sources */,
+				44C17D0B1D88B6490068A5E4 /* GifDetailViewController.m in Sources */,
 				4457D0E31D8657EC001A4291 /* main.m in Sources */,
+				44C835AF1D8857A800993F3E /* TableViewController.m in Sources */,
+				44C17D0E1D88BE7D0068A5E4 /* TableViewCell.m in Sources */,
 				4457D0EF1D8657EC001A4291 /* Giffy.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +444,7 @@
 				4457D1051D8657EC001A4291 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4457D1061D8657EC001A4291 /* Build configuration list for PBXNativeTarget "GiffyTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +453,7 @@
 				4457D1081D8657EC001A4291 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

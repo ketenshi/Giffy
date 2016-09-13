@@ -8,7 +8,11 @@
 
 #import "ViewController.h"
 
+#import "TableViewController.h"
+
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 
 @end
 
@@ -23,6 +27,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+    TableViewController *tableVC = (TableViewController *)navController.topViewController;
+    
+    NSString *tag = @"happy";
+    if (self.searchTextField.text != nil && ![self.searchTextField.text isEqualToString:@""]) {
+        tag = self.searchTextField.text;
+    }
+    
+    tableVC.tag = tag;
 }
 
 

@@ -10,6 +10,7 @@
 
 #import "Gif.h"
 #import "GifDetailViewController.h"
+#import "GifDatabase.h"
 
 @interface TableViewController () <NSURLSessionDownloadDelegate, UISearchControllerDelegate, UISearchBarDelegate>
 
@@ -56,7 +57,7 @@
 
 - (void)loadImages {
     for (Gif *gif in self.dataSource) {
-        if (gif.storagePath != nil) {
+        if (gif.imageDownloaded) {
             continue;
         }
         
@@ -67,6 +68,13 @@
         [self.activeDownloadTasks setObject:gif forKey:gif.webURL];
         
         [task resume];
+    }
+    
+    if (self.activeDownloadTasks.count == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        
     }
 }
 
@@ -85,23 +93,29 @@
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    documentsPath = [documentsPath stringByAppendingPathComponent:@"Gifs"];
-    
-    if (![fileManager fileExistsAtPath:documentsPath]) {
-        [fileManager createDirectoryAtPath:documentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    
     Gif *gif = (Gif *)[self.activeDownloadTasks objectForKey:downloadTask.originalRequest.URL.absoluteString];
+//    
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//    documentsPath = [NSString pathWithComponents:@[documentsPath, @"Database", gif.identifier]];
+//    documentsPath = [documentsPath stringByAppendingPathExtension:@"gifData"];
+//    
+//    if (![fileManager fileExistsAtPath:documentsPath]) {
+//        [fileManager createDirectoryAtPath:documentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+//    }
+//    
+//    documentsPath = [documentsPath stringByAppendingPathComponent:@"image.gif"];
+////    documentsPath = [documentsPath stringByAppendingPathExtension:@"gif"];
+//    
+//    NSData *gifData = [NSData dataWithContentsOfURL:location];
+//    [fileManager createFileAtPath:documentsPath contents:gifData attributes:nil];
+//    
+////    Gif *gif2 = [[GifDatabase sharedDatabase] gifWithIdentifier:gif.identifier];
+//    gif.storagePath = documentsPath;
+////
+//    [gif saveData];
     
-    documentsPath = [documentsPath stringByAppendingPathComponent:gif.identifier];
-    documentsPath = [documentsPath stringByAppendingPathExtension:@"gif"];
-    
-    NSData *gifData = [NSData dataWithContentsOfURL:location];
-    [fileManager createFileAtPath:documentsPath contents:gifData attributes:nil];
-    
-    gif.storagePath = documentsPath;
+    [gif saveImage:location];
     
     [self.activeDownloadTasks removeObjectForKey:downloadTask.originalRequest.URL.absoluteString];
     
@@ -133,8 +147,9 @@
     Gif *gif = self.dataSource[indexPath.row];
     
     
-        NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.storagePath];
-        
+        NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.imagePath];
+    
+    
         cell.imageView.image = [UIImage imageWithData:imageData];
 //    }
 
@@ -160,7 +175,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.dataSource.count - 1) {
+    if (self.activeDownloadTasks.count == 0 && indexPath.row == self.dataSource.count - 1) {
         NSLog(@"B");
         self.currentPage += 1;
         [self updateTableResults];
@@ -178,9 +193,11 @@
             NSDictionary *dict =  [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
             for (NSDictionary *gifData in dict[@"gifs"]) {
-                Gif *gif = [Gif new];
-                gif.identifier = gifData[@"id"];
-                gif.webURL = gifData[@"url"];
+                Gif *gif = [[GifDatabase sharedDatabase] gifWithIdentifier:gifData[@"id"]];
+                
+                if (!gif) {
+                    gif = [[GifDatabase sharedDatabase] createAndSaveGifWithData:gifData];
+                }
                 
                 [self.dataSource addObject:gif];
             }

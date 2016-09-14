@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Gif : NSObject
+@interface Gif : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *identifier;
 @property (strong, nonatomic) NSArray <NSString *> *tags;
 @property (strong, nonatomic) NSString *webURL;
-@property (strong, nonatomic) NSString *storagePath;
+@property (nonatomic) BOOL imageDownloaded;
 
+- (void)saveData;
+
+- (void)saveImage:(NSURL *)tempLocation;
+
+- (NSString *)imagePath;
 @end

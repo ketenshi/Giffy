@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSData *gifData = [[NSFileManager defaultManager] contentsAtPath:self.gif.storagePath];
+    NSData *gifData = [[NSFileManager defaultManager] contentsAtPath:self.gif.imagePath];
     
     self.imageView.image = [UIImage imageWithData:gifData];
 }

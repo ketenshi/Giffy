@@ -8,6 +8,8 @@
 
 #import "GifDetailViewController.h"
 
+#import "Gif.h"
+
 @interface GifDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -19,14 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    documentsPath = [documentsPath stringByAppendingPathComponent:@"Gifs"];
-    
-    documentsPath = [documentsPath stringByAppendingPathComponent:self.gifId];
-    documentsPath = [documentsPath stringByAppendingPathExtension:@"gif"];
-    
-    NSData *gifData = [fileManager contentsAtPath:documentsPath];
+    NSData *gifData = [[NSFileManager defaultManager] contentsAtPath:self.gif.storagePath];
     
     self.imageView.image = [UIImage imageWithData:gifData];
 }

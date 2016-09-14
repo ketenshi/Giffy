@@ -8,8 +8,10 @@
 
 #import "ViewController.h"
 
+@class Gif;
+
 @interface GifDetailViewController : ViewController
 
-@property (strong, nonatomic) NSString *gifId;
+@property (strong, nonatomic) Gif *gif;
 
 @end

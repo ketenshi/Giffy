@@ -8,45 +8,45 @@
 
 #import "TableViewController.h"
 
+#import "Gif.h"
 #import "GifDetailViewController.h"
 
-@interface TableViewController () <NSURLSessionDownloadDelegate>
+@interface TableViewController () <NSURLSessionDownloadDelegate, UISearchControllerDelegate, UISearchBarDelegate>
 
-@property (strong, nonatomic) NSArray *dataSource;
-@property (strong, nonatomic) NSMutableArray <NSString *> *imageIDs;
+@property (strong, nonatomic) UISearchController *searchController;
+
+@property (nonatomic) NSUInteger currentPage;
+@property (strong, nonatomic) NSMutableArray <Gif *>*dataSource;
+@property (strong, nonatomic) NSMutableDictionary *activeDownloadTasks;
 
 @end
 
 @implementation TableViewController
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.currentPage = 1;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.delegate = self;
+    
+    self.searchController.searchBar.delegate = self;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    [self updateTableResults];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gifbase.com/tag/%@?format=json", self.tag]];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionDataTask *task = [defaultSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@", error);
-        }
-        else {
-            NSDictionary *dict =  [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"data");
-            self.dataSource = dict[@"gifs"];
-            
-            [self loadImages];
-            
-            [self.tableView reloadData];
-        }
-        NSLog(@"data");
-    }];
-    
-    [task resume];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,22 +55,36 @@
 }
 
 - (void)loadImages {
-    for (NSDictionary *gif in self.dataSource) {
-        NSURL *url = [NSURL URLWithString:gif[@"url"]];
+    for (Gif *gif in self.dataSource) {
+        if (gif.storagePath != nil) {
+            continue;
+        }
+        
+        NSURL *url = [NSURL URLWithString:gif.webURL];
         NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
         NSURLSessionDownloadTask *task = [defaultSession downloadTaskWithURL:url];
-//        NSURLSessionDataTask *task = [defaultSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        [self.activeDownloadTasks setObject:gif forKey:gif.webURL];
+        
         [task resume];
-//        }];
     }
 }
 
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
-    if (!self.imageIDs) {
-        self.imageIDs = [NSMutableArray array];
+- (NSMutableDictionary *)activeDownloadTasks {
+    if (!_activeDownloadTasks) {
+        _activeDownloadTasks = [NSMutableDictionary dictionary];
     }
-    NSLog(@"A");
-    
+    return _activeDownloadTasks;
+}
+
+- (NSMutableArray *)dataSource {
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray array];
+    }
+    return _dataSource;
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     documentsPath = [documentsPath stringByAppendingPathComponent:@"Gifs"];
@@ -79,72 +93,102 @@
         [fileManager createDirectoryAtPath:documentsPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
-    NSString *s = [[NSUUID UUID] UUIDString];
-    documentsPath = [documentsPath stringByAppendingPathComponent:s];
+    Gif *gif = (Gif *)[self.activeDownloadTasks objectForKey:downloadTask.originalRequest.URL.absoluteString];
+    
+    documentsPath = [documentsPath stringByAppendingPathComponent:gif.identifier];
     documentsPath = [documentsPath stringByAppendingPathExtension:@"gif"];
     
-    NSIndexPath *cellIndexPath = [NSIndexPath indexPathForRow:self.imageIDs.count inSection:0];
-    
-    [self.imageIDs addObject:s];
-    
     NSData *gifData = [NSData dataWithContentsOfURL:location];
-    
-//    [gifData writeToURL:[NSURL URLWithString:documentsPath] atomically:YES];
-    
     [fileManager createFileAtPath:documentsPath contents:gifData attributes:nil];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadRowsAtIndexPaths:@[cellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-    });
+    gif.storagePath = documentsPath;
     
+    [self.activeDownloadTasks removeObjectForKey:downloadTask.originalRequest.URL.absoluteString];
     
-//    [fileManager copyItemAtURL:location toURL:[NSURL URLWithString:documentsPath] error:nil];
-    
+    if (self.activeDownloadTasks.count == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-    NSLog(@"%@", error);
-}
+//- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+//    NSLog(@"%@", error);
+//}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
     
-    NSString *imageName = self.imageIDs[indexPath.row];
+//    if (self.imageIDs.count > indexPath.row) {
+    Gif *gif = self.dataSource[indexPath.row];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    documentsPath = [documentsPath stringByAppendingPathComponent:@"Gifs"];
-    documentsPath = [documentsPath stringByAppendingPathComponent:imageName];
-    documentsPath = [documentsPath stringByAppendingPathExtension:@"gif"];
-    
-    NSData *imageData = [fileManager contentsAtPath:documentsPath];
-    
-    cell.imageView.image = [UIImage imageWithData:imageData];
+        NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.storagePath];
+        
+        cell.imageView.image = [UIImage imageWithData:imageData];
+//    }
+
+    cell.textLabel.text = self.dataSource[indexPath.row].identifier;
     
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"A");
     GifDetailViewController *detailVC = (GifDetailViewController *)segue.destinationViewController;
-    
     UITableViewCell *cell = (UITableViewCell *)sender;
+    detailVC.gif = self.dataSource[[self.tableView indexPathForCell:cell].row];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.tag = searchBar.text;
     
-    detailVC.gifId = self.imageIDs[[self.tableView indexPathForCell:cell].row];
+    self.searchController.active = NO;
+    self.dataSource = nil;
+    self.currentPage = 1;
+    
+    [self updateTableResults];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.dataSource.count - 1) {
+        NSLog(@"B");
+        self.currentPage += 1;
+        [self updateTableResults];
+    }
+}
+
+- (void)updateTableResults {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gifbase.com/tag/%@?p=%ld&format=json", self.tag, self.currentPage]];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *task = [defaultSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        else {
+            NSDictionary *dict =  [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            for (NSDictionary *gifData in dict[@"gifs"]) {
+                Gif *gif = [Gif new];
+                gif.identifier = gifData[@"id"];
+                gif.webURL = gifData[@"url"];
+                
+                [self.dataSource addObject:gif];
+            }
+            [self loadImages];
+        }
+    }];
+    
+    [task resume];
 }
 
 /*

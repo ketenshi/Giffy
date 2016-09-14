@@ -18,6 +18,7 @@
 		4457D10A1D8663C5001A4291 /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 4457D1091D8663C5001A4291 /* tags.json */; };
 		44C17D0B1D88B6490068A5E4 /* GifDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D0A1D88B6490068A5E4 /* GifDetailViewController.m */; };
 		44C17D0E1D88BE7D0068A5E4 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */; };
+		44C17D111D88DC7C0068A5E4 /* Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D101D88DC7C0068A5E4 /* Gif.m */; };
 		44C835AF1D8857A800993F3E /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C835AE1D8857A800993F3E /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,8 @@
 		44C17D0A1D88B6490068A5E4 /* GifDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifDetailViewController.m; sourceTree = "<group>"; };
 		44C17D0C1D88BE7D0068A5E4 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		44C17D0F1D88DC7C0068A5E4 /* Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gif.h; path = ../Gif.h; sourceTree = "<group>"; };
+		44C17D101D88DC7C0068A5E4 /* Gif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gif.m; path = ../Gif.m; sourceTree = "<group>"; };
 		44C835AD1D8857A800993F3E /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		44C835AE1D8857A800993F3E /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +103,8 @@
 				4457D0E81D8657EC001A4291 /* ViewController.m */,
 				44C835AD1D8857A800993F3E /* TableViewController.h */,
 				44C835AE1D8857A800993F3E /* TableViewController.m */,
+				44C17D0F1D88DC7C0068A5E4 /* Gif.h */,
+				44C17D101D88DC7C0068A5E4 /* Gif.m */,
 				44C17D091D88B6490068A5E4 /* GifDetailViewController.h */,
 				44C17D0A1D88B6490068A5E4 /* GifDetailViewController.m */,
 				44C17D0C1D88BE7D0068A5E4 /* TableViewCell.h */,
@@ -243,6 +248,7 @@
 				4457D0E31D8657EC001A4291 /* main.m in Sources */,
 				44C835AF1D8857A800993F3E /* TableViewController.m in Sources */,
 				44C17D0E1D88BE7D0068A5E4 /* TableViewCell.m in Sources */,
+				44C17D111D88DC7C0068A5E4 /* Gif.m in Sources */,
 				4457D0EF1D8657EC001A4291 /* Giffy.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

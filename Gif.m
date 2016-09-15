@@ -8,7 +8,10 @@
 
 #import "Gif.h"
 
+@import UIKit;
+
 static NSString * const identifierKey = @"identifier";
+static NSString * const tagsKey = @"tags";
 static NSString * const webURLKey = @"webURL";
 static NSString * const imageDownloadedKey = @"imageDownloaded";
 
@@ -22,6 +25,7 @@ static NSString * const imageDownloadedKey = @"imageDownloaded";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.identifier forKey:identifierKey];
+    [aCoder encodeObject:self.tags forKey:tagsKey];
     [aCoder encodeObject:self.webURL forKey:webURLKey];
     [aCoder encodeBool:self.imageDownloaded forKey:imageDownloadedKey];
 }
@@ -33,6 +37,7 @@ static NSString * const imageDownloadedKey = @"imageDownloaded";
     }
     
     self.identifier = [aDecoder decodeObjectForKey:identifierKey];
+    self.tags = [aDecoder decodeObjectForKey:tagsKey];
     self.webURL = [aDecoder decodeObjectForKey:webURLKey];
     self.imageDownloaded = [aDecoder decodeBoolForKey:imageDownloadedKey];
     
@@ -46,18 +51,65 @@ static NSString * const imageDownloadedKey = @"imageDownloaded";
 }
 
 - (void)saveImage:(NSURL *)tempLocation {
+    NSData *gifData = [NSData dataWithContentsOfURL:tempLocation];
+    UIImage *image = [UIImage imageWithData:gifData];
+    
+//    UIImage *scaledImage = [Gif imageWithImage:image scaledToFillSize:CGSizeMake(60, 60)];
+//    
+//    NSData *thumbnailData = UIImagePNGRepresentation(thumbnail);
+//    
     NSString *documentsPath = [[self databaseFilePath] stringByAppendingPathComponent:@"image.gif"];
     
-    NSData *gifData = [NSData dataWithContentsOfURL:tempLocation];
+    
     [[NSFileManager defaultManager] createFileAtPath:documentsPath contents:gifData attributes:nil];
     
     self.imageDownloaded = YES;;
     
+    
+    
+    UIImage *thumbnail = [Gif imageWithImage:image scaledToFillSize:CGSizeMake(60, 60)];
+    
+    NSData *thumbnailData = UIImagePNGRepresentation(thumbnail);
+    
+    NSString *documentsPath2 = [[self databaseFilePath] stringByAppendingPathComponent:@"thumbnail.png"];
+    
+    [[NSFileManager defaultManager] createFileAtPath:documentsPath2 contents:thumbnailData attributes:nil];
+    
     [self saveData];
+}
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToFillSize:(CGSize)size {
+    CGFloat scale = MAX(size.width/image.size.width, size.height/image.size.height);
+    CGFloat width = image.size.width * scale;
+    CGFloat height = image.size.height * scale;
+    CGRect imageRect = CGRectMake((size.width - width)/2.0f, (size.height - height)/2.0f, width, height);
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [image drawInRect:imageRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToFitSize:(CGSize)size {
+    CGFloat scale = MIN(size.width/image.size.width, size.height/image.size.height);
+    CGFloat width = image.size.width * scale;
+    CGFloat height = image.size.height * scale;
+    CGRect imageRect = CGRectMake((size.width - width)/2.0f, (size.height - height)/2.0f, width, height);
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [image drawInRect:imageRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (NSString *)imagePath {
     return [self.databaseFilePath stringByAppendingPathComponent:@"image.gif"];
+}
+
+- (NSString *)thumbnailPath {
+    return [self.databaseFilePath stringByAppendingPathComponent:@"thumbnail.png"];
 }
 
 - (NSString *)databaseFilePath {

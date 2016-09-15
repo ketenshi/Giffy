@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UISearchController *searchController;
 
 @property (nonatomic) NSUInteger currentPage;
+@property (nonatomic) BOOL reachedEnd;
 @property (strong, nonatomic) NSMutableArray <Gif *>*dataSource;
 @property (strong, nonatomic) NSMutableDictionary *activeDownloadTasks;
 
@@ -56,6 +57,7 @@
 }
 
 - (void)loadImages {
+    NSLog(@"loading images");
     for (Gif *gif in self.dataSource) {
         if (gif.imageDownloaded) {
             continue;
@@ -76,6 +78,11 @@
         });
         
     }
+}
+
+- (void)setTag:(NSString *)tag {
+    _tag = tag;
+    self.title = tag;
 }
 
 - (NSMutableDictionary *)activeDownloadTasks {
@@ -147,7 +154,7 @@
     Gif *gif = self.dataSource[indexPath.row];
     
     
-        NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.imagePath];
+        NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.thumbnailPath];
     
     
         cell.imageView.image = [UIImage imageWithData:imageData];
@@ -165,17 +172,26 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if (self.activeDownloadTasks.count > 0) {
+        for (NSURLSessionDownloadTask *task in self.activeDownloadTasks) {
+            [task cancel];
+        }
+        
+        [self.activeDownloadTasks removeAllObjects];
+    }
+    
     self.tag = searchBar.text;
     
     self.searchController.active = NO;
     self.dataSource = nil;
     self.currentPage = 1;
+    self.reachedEnd = NO;
     
     [self updateTableResults];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.activeDownloadTasks.count == 0 && indexPath.row == self.dataSource.count - 1) {
+    if (self.activeDownloadTasks.count == 0 && indexPath.row == self.dataSource.count - 1 && !self.reachedEnd) {
         NSLog(@"B");
         self.currentPage += 1;
         [self updateTableResults];
@@ -192,6 +208,10 @@
         else {
             NSDictionary *dict =  [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
+            if (dict[@"error"]) {
+                self.reachedEnd = YES;
+                return;
+            }
             for (NSDictionary *gifData in dict[@"gifs"]) {
                 Gif *gif = [[GifDatabase sharedDatabase] gifWithIdentifier:gifData[@"id"]];
                 

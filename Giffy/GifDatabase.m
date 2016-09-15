@@ -98,6 +98,7 @@
 - (Gif *)createAndSaveGifWithData:(NSDictionary *)gifData {
     Gif *gif = [Gif new];
     gif.identifier = gifData[@"id"];
+    gif.tags = gifData[@"tags"];
     gif.webURL = gifData[@"url"];
     
     [gif saveData];

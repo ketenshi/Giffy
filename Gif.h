@@ -20,4 +20,6 @@
 - (void)saveImage:(NSURL *)tempLocation;
 
 - (NSString *)imagePath;
+- (NSString *)thumbnailPath;
+
 @end

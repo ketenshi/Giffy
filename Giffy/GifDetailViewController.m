@@ -10,9 +10,11 @@
 
 #import "Gif.h"
 
-@interface GifDetailViewController ()
+@interface GifDetailViewController()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+
 @end
 
 @implementation GifDetailViewController
@@ -24,6 +26,8 @@
     NSData *gifData = [[NSFileManager defaultManager] contentsAtPath:self.gif.imagePath];
     
     self.imageView.image = [UIImage imageWithData:gifData];
+    
+    self.label.text = self.gif.tags;
 }
 
 - (void)didReceiveMemoryWarning {

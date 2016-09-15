@@ -25,3 +25,7 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+
+## Carthage
+Carthage/Checkouts
+

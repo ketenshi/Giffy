@@ -10,9 +10,11 @@
 
 #import "Gif.h"
 
+#import <FLAnimatedImage/FLAnimatedImage.h>
+
 @interface GifDetailViewController()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
@@ -25,7 +27,10 @@
     
     NSData *gifData = [[NSFileManager defaultManager] contentsAtPath:self.gif.imagePath];
     
-    self.imageView.image = [UIImage imageWithData:gifData];
+    FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
+    
+    self.imageView.animatedImage = animatedImage;
+    
     
     self.label.text = self.gif.tags;
 }

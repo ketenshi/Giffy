@@ -23,6 +23,8 @@
 		44C17D161D88FA850068A5E4 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44C17D151D88FA850068A5E4 /* data.plist */; };
 		44C835AF1D8857A800993F3E /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C835AE1D8857A800993F3E /* TableViewController.m */; };
 		44E437F01D8A615900E152FF /* TagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E437EF1D8A615900E152FF /* TagsHelper.m */; };
+		44E437F21D8B094400E152FF /* FLAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E437F11D8B094400E152FF /* FLAnimatedImage.framework */; };
+		44E437F31D8B094400E152FF /* FLAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44E437F11D8B094400E152FF /* FLAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,20 @@
 			remoteInfo = Giffy;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44E437F41D8B094400E152FF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				44E437F31D8B094400E152FF /* FLAnimatedImage.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4457D0DE1D8657EC001A4291 /* Giffy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giffy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +80,7 @@
 		44C835AE1D8857A800993F3E /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		44E437EE1D8A615900E152FF /* TagsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsHelper.h; sourceTree = "<group>"; };
 		44E437EF1D8A615900E152FF /* TagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsHelper.m; sourceTree = "<group>"; };
+		44E437F11D8B094400E152FF /* FLAnimatedImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAnimatedImage.framework; path = Carthage/Build/iOS/FLAnimatedImage.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44E437F21D8B094400E152FF /* FLAnimatedImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +105,7 @@
 		4457D0D51D8657EC001A4291 = {
 			isa = PBXGroup;
 			children = (
+				44E437F11D8B094400E152FF /* FLAnimatedImage.framework */,
 				4457D0E01D8657EC001A4291 /* Giffy */,
 				4457D0FD1D8657EC001A4291 /* GiffyTests */,
 				4457D0DF1D8657EC001A4291 /* Products */,
@@ -160,6 +179,7 @@
 				4457D0DA1D8657EC001A4291 /* Sources */,
 				4457D0DB1D8657EC001A4291 /* Frameworks */,
 				4457D0DC1D8657EC001A4291 /* Resources */,
+				44E437F41D8B094400E152FF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -402,6 +422,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W5NZFP3G3C;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Giffy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MangoWorks.Giffy;
@@ -414,6 +438,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W5NZFP3G3C;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Giffy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MangoWorks.Giffy;

@@ -22,6 +22,7 @@
 		44C17D141D88F9D60068A5E4 /* GifDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D131D88F9D60068A5E4 /* GifDatabase.m */; };
 		44C17D161D88FA850068A5E4 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44C17D151D88FA850068A5E4 /* data.plist */; };
 		44C835AF1D8857A800993F3E /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C835AE1D8857A800993F3E /* TableViewController.m */; };
+		44E437F01D8A615900E152FF /* TagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E437EF1D8A615900E152FF /* TagsHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		44C17D151D88FA850068A5E4 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		44C835AD1D8857A800993F3E /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		44C835AE1D8857A800993F3E /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		44E437EE1D8A615900E152FF /* TagsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsHelper.h; sourceTree = "<group>"; };
+		44E437EF1D8A615900E152FF /* TagsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				4457D0F51D8657EC001A4291 /* Info.plist */,
 				4457D0ED1D8657EC001A4291 /* Giffy.xcdatamodeld */,
 				4457D1091D8663C5001A4291 /* tags.json */,
+				44E437EE1D8A615900E152FF /* TagsHelper.h */,
+				44E437EF1D8A615900E152FF /* TagsHelper.m */,
 				44C17D151D88FA850068A5E4 /* data.plist */,
 				4457D0E11D8657EC001A4291 /* Supporting Files */,
 			);
@@ -257,6 +262,7 @@
 				44C17D0B1D88B6490068A5E4 /* GifDetailViewController.m in Sources */,
 				4457D0E31D8657EC001A4291 /* main.m in Sources */,
 				44C835AF1D8857A800993F3E /* TableViewController.m in Sources */,
+				44E437F01D8A615900E152FF /* TagsHelper.m in Sources */,
 				44C17D0E1D88BE7D0068A5E4 /* TableViewCell.m in Sources */,
 				44C17D111D88DC7C0068A5E4 /* Gif.m in Sources */,
 				4457D0EF1D8657EC001A4291 /* Giffy.xcdatamodeld in Sources */,

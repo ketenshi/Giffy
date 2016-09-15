@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tv3-hn-92L">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -30,19 +30,26 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
-                                    <segue destination="Tv3-hn-92L" kind="show" id="OeS-oz-3Ax"/>
+                                    <segue destination="Xjj-rX-8ka" kind="show" id="cdd-Cf-wGO"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JnG-Wl-YNH">
+                                <frame key="frameInset" minX="67" minY="234" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GQj-Mj-CmE"/>
                     <connections>
                         <outlet property="searchTextField" destination="R7s-dR-UGv" id="hdr-Hb-JAp"/>
+                        <outlet property="suggestionsTable" destination="JnG-Wl-YNH" id="74n-xO-hin"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="70.614692653673174"/>
+            <point key="canvasLocation" x="684" y="59"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="iff-K3-sq4">
@@ -57,7 +64,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v3A-Y7-egh" id="aTv-nl-Buh">
-                                    <frame key="frameInset" width="375" height="59"/>
+                                    <frame key="frameInset" width="375" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -74,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rju-qm-4TG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1478" y="71"/>
+            <point key="canvasLocation" x="1526" y="42"/>
         </scene>
         <!--Gif Detail View Controller-->
         <scene sceneID="UxN-J8-sgu">
@@ -120,12 +127,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Xjj-rX-8ka" kind="relationship" relationship="rootViewController" id="hJn-za-cQq"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="mrm-4c-Luc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F56-tF-sj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="817" y="71"/>
+            <point key="canvasLocation" x="-172" y="59"/>
         </scene>
     </scenes>
 </document>

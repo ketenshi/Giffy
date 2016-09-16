@@ -21,15 +21,4 @@
     // Configure the view for the selected state
 }
 
-//- (void)layoutSubviews {
-//    
-//    
-//    CGRect imageFrame = self.imageView.frame;
-//    imageFrame.size.width = CGRectGetHeight(imageFrame);
-//    
-//    self.imageView.frame = imageFrame;
-//    
-//    [super layoutSubviews];
-//}
-
 @end

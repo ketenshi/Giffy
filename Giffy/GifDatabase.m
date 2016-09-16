@@ -10,9 +10,6 @@
 
 #import "Gif.h"
 
-@interface GifDatabase ()
-@end
-
 @implementation GifDatabase
 
 + (instancetype)sharedDatabase {
@@ -23,54 +20,6 @@
     });
     
     return sharedInstance;
-}
-
-- (void)saveData {
-//    self.dataSource = [NSMutableArray array];
-    
-    Gif *gif1 = [Gif new];
-    gif1.identifier = @"1";
-    gif1.webURL = @"asdlgjlkj";
-    
-//    [self.dataSource addObject:gif1];
-    
-    Gif *gif2 = [Gif new];
-    gif2.identifier = @"3";
-    gif2.webURL = @"asdlgjlkj";
-    
-//    [self.dataSource addObject:gif2];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    documentsPath = [documentsPath stringByAppendingPathComponent:@"Database"];
-    
-    if (![fileManager fileExistsAtPath:documentsPath]) {
-        [fileManager createDirectoryAtPath:documentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    
-    documentsPath = [documentsPath stringByAppendingPathComponent:@"data.plist"];
-    
-    [gif1 saveData];
-    [gif2 saveData];
-    
-//    BOOL y= [NSKeyedArchiver archiveRootObject:self.dataSource toFile:documentsPath];
-    
-    
-//    NSArray *b = [NSKeyedUnarchiver unarchiveObjectWithFile:documentsPath];
-    
-    self.dataSource;
-    
-    Gif *gif3 = [self gifWithIdentifier:@"1"];
-    
-    NSLog(@"A");
-}
-
-- (NSMutableArray<Gif *> *)dataSource {
-    if (!_dataSource) {
-        _dataSource = [NSMutableArray array];
-        [self loadDatabase];
-    }
-    return _dataSource;
 }
 
 - (void)loadDatabase {
@@ -104,6 +53,16 @@
     [gif saveData];
     
     return gif;
+}
+
+#pragma mark Lazy
+
+- (NSMutableArray<Gif *> *)dataSource {
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray array];
+        [self loadDatabase];
+    }
+    return _dataSource;
 }
 
 @end

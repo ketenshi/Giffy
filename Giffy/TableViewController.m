@@ -44,12 +44,6 @@
 //    self.tableView.tableHeaderView = self.searchController.searchBar;
     
     [self updateTableResults];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +52,6 @@
 }
 
 - (void)loadImages {
-    NSLog(@"loading images");
     for (Gif *gif in self.dataSource) {
         if (gif.imageDownloaded) {
             continue;
@@ -77,14 +70,33 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-        
     }
 }
+
+
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
+    
+    Gif *gif = (Gif *)[self.activeDownloadTasks objectForKey:downloadTask.originalRequest.URL.absoluteString];
+    [gif saveImage:location];
+    
+    [self.activeDownloadTasks removeObjectForKey:downloadTask.originalRequest.URL.absoluteString];
+    
+    if (self.activeDownloadTasks.count == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }
+}
+
+#pragma mark Accessor
 
 - (void)setTag:(NSString *)tag {
     _tag = tag;
     self.title = tag;
 }
+
+#pragma mark Lazy
 
 - (NSMutableDictionary *)activeDownloadTasks {
     if (!_activeDownloadTasks) {
@@ -99,44 +111,6 @@
     }
     return _dataSource;
 }
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
-    Gif *gif = (Gif *)[self.activeDownloadTasks objectForKey:downloadTask.originalRequest.URL.absoluteString];
-//    
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-//    documentsPath = [NSString pathWithComponents:@[documentsPath, @"Database", gif.identifier]];
-//    documentsPath = [documentsPath stringByAppendingPathExtension:@"gifData"];
-//    
-//    if (![fileManager fileExistsAtPath:documentsPath]) {
-//        [fileManager createDirectoryAtPath:documentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-//    }
-//    
-//    documentsPath = [documentsPath stringByAppendingPathComponent:@"image.gif"];
-////    documentsPath = [documentsPath stringByAppendingPathExtension:@"gif"];
-//    
-//    NSData *gifData = [NSData dataWithContentsOfURL:location];
-//    [fileManager createFileAtPath:documentsPath contents:gifData attributes:nil];
-//    
-////    Gif *gif2 = [[GifDatabase sharedDatabase] gifWithIdentifier:gif.identifier];
-//    gif.storagePath = documentsPath;
-////
-//    [gif saveData];
-    
-    [gif saveImage:location];
-    
-    [self.activeDownloadTasks removeObjectForKey:downloadTask.originalRequest.URL.absoluteString];
-    
-    if (self.activeDownloadTasks.count == 0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }
-}
-
-//- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-//    NSLog(@"%@", error);
-//}
 
 #pragma mark - Table view data source
 
@@ -223,49 +197,5 @@
     
     [task resume];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

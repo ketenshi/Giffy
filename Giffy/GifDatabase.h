@@ -16,8 +16,6 @@
 
 + (instancetype)sharedDatabase;
 
-- (void)saveData;
-
 - (Gif *)gifWithIdentifier:(NSString *)identifier;
 - (Gif *)createAndSaveGifWithData:(NSDictionary *)gifData;
 

@@ -11,7 +11,6 @@
 		4457D0E61D8657EC001A4291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457D0E51D8657EC001A4291 /* AppDelegate.m */; };
 		4457D0E91D8657EC001A4291 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457D0E81D8657EC001A4291 /* ViewController.m */; };
 		4457D0EC1D8657EC001A4291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4457D0EA1D8657EC001A4291 /* Main.storyboard */; };
-		4457D0EF1D8657EC001A4291 /* Giffy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4457D0ED1D8657EC001A4291 /* Giffy.xcdatamodeld */; };
 		4457D0F11D8657EC001A4291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4457D0F01D8657EC001A4291 /* Assets.xcassets */; };
 		4457D0F41D8657EC001A4291 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4457D0F21D8657EC001A4291 /* LaunchScreen.storyboard */; };
 		4457D0FF1D8657EC001A4291 /* GiffyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457D0FE1D8657EC001A4291 /* GiffyTests.m */; };
@@ -20,7 +19,6 @@
 		44C17D0E1D88BE7D0068A5E4 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */; };
 		44C17D111D88DC7C0068A5E4 /* Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D101D88DC7C0068A5E4 /* Gif.m */; };
 		44C17D141D88F9D60068A5E4 /* GifDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C17D131D88F9D60068A5E4 /* GifDatabase.m */; };
-		44C17D161D88FA850068A5E4 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44C17D151D88FA850068A5E4 /* data.plist */; };
 		44C835AF1D8857A800993F3E /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C835AE1D8857A800993F3E /* TableViewController.m */; };
 		44E437F01D8A615900E152FF /* TagsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E437EF1D8A615900E152FF /* TagsHelper.m */; };
 		44E437F21D8B094400E152FF /* FLAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E437F11D8B094400E152FF /* FLAnimatedImage.framework */; };
@@ -59,7 +57,6 @@
 		4457D0E71D8657EC001A4291 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4457D0E81D8657EC001A4291 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4457D0EB1D8657EC001A4291 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4457D0EE1D8657EC001A4291 /* Giffy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Giffy.xcdatamodel; sourceTree = "<group>"; };
 		4457D0F01D8657EC001A4291 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4457D0F31D8657EC001A4291 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4457D0F51D8657EC001A4291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,7 +72,6 @@
 		44C17D101D88DC7C0068A5E4 /* Gif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gif.m; path = ../Gif.m; sourceTree = "<group>"; };
 		44C17D121D88F9D60068A5E4 /* GifDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifDatabase.h; sourceTree = "<group>"; };
 		44C17D131D88F9D60068A5E4 /* GifDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifDatabase.m; sourceTree = "<group>"; };
-		44C17D151D88FA850068A5E4 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		44C835AD1D8857A800993F3E /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		44C835AE1D8857A800993F3E /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		44E437EE1D8A615900E152FF /* TagsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsHelper.h; sourceTree = "<group>"; };
@@ -105,8 +101,8 @@
 		4457D0D51D8657EC001A4291 = {
 			isa = PBXGroup;
 			children = (
-				44E437F11D8B094400E152FF /* FLAnimatedImage.framework */,
 				4457D0E01D8657EC001A4291 /* Giffy */,
+				44B66EAD1D8B7DC500982F99 /* Supporting Frameworks */,
 				4457D0FD1D8657EC001A4291 /* GiffyTests */,
 				4457D0DF1D8657EC001A4291 /* Products */,
 			);
@@ -130,23 +126,19 @@
 				4457D0E81D8657EC001A4291 /* ViewController.m */,
 				44C835AD1D8857A800993F3E /* TableViewController.h */,
 				44C835AE1D8857A800993F3E /* TableViewController.m */,
+				44C17D0C1D88BE7D0068A5E4 /* TableViewCell.h */,
+				44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */,
 				44C17D0F1D88DC7C0068A5E4 /* Gif.h */,
 				44C17D101D88DC7C0068A5E4 /* Gif.m */,
 				44C17D121D88F9D60068A5E4 /* GifDatabase.h */,
 				44C17D131D88F9D60068A5E4 /* GifDatabase.m */,
 				44C17D091D88B6490068A5E4 /* GifDetailViewController.h */,
 				44C17D0A1D88B6490068A5E4 /* GifDetailViewController.m */,
-				44C17D0C1D88BE7D0068A5E4 /* TableViewCell.h */,
-				44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */,
-				4457D0EA1D8657EC001A4291 /* Main.storyboard */,
-				4457D0F01D8657EC001A4291 /* Assets.xcassets */,
-				4457D0F21D8657EC001A4291 /* LaunchScreen.storyboard */,
-				4457D0F51D8657EC001A4291 /* Info.plist */,
-				4457D0ED1D8657EC001A4291 /* Giffy.xcdatamodeld */,
-				4457D1091D8663C5001A4291 /* tags.json */,
 				44E437EE1D8A615900E152FF /* TagsHelper.h */,
 				44E437EF1D8A615900E152FF /* TagsHelper.m */,
-				44C17D151D88FA850068A5E4 /* data.plist */,
+				4457D0EA1D8657EC001A4291 /* Main.storyboard */,
+				4457D0F21D8657EC001A4291 /* LaunchScreen.storyboard */,
+				44B66EAE1D8B7E2E00982F99 /* Resources */,
 				4457D0E11D8657EC001A4291 /* Supporting Files */,
 			);
 			path = Giffy;
@@ -167,6 +159,24 @@
 				4457D1001D8657EC001A4291 /* Info.plist */,
 			);
 			path = GiffyTests;
+			sourceTree = "<group>";
+		};
+		44B66EAD1D8B7DC500982F99 /* Supporting Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44E437F11D8B094400E152FF /* FLAnimatedImage.framework */,
+			);
+			name = "Supporting Frameworks";
+			sourceTree = "<group>";
+		};
+		44B66EAE1D8B7E2E00982F99 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4457D0F01D8657EC001A4291 /* Assets.xcassets */,
+				4457D0F51D8657EC001A4291 /* Info.plist */,
+				4457D1091D8663C5001A4291 /* tags.json */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +267,6 @@
 				4457D10A1D8663C5001A4291 /* tags.json in Resources */,
 				4457D0F41D8657EC001A4291 /* LaunchScreen.storyboard in Resources */,
 				4457D0F11D8657EC001A4291 /* Assets.xcassets in Resources */,
-				44C17D161D88FA850068A5E4 /* data.plist in Resources */,
 				4457D0EC1D8657EC001A4291 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +294,6 @@
 				44E437F01D8A615900E152FF /* TagsHelper.m in Sources */,
 				44C17D0E1D88BE7D0068A5E4 /* TableViewCell.m in Sources */,
 				44C17D111D88DC7C0068A5E4 /* Gif.m in Sources */,
-				4457D0EF1D8657EC001A4291 /* Giffy.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,19 +514,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4457D0ED1D8657EC001A4291 /* Giffy.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4457D0EE1D8657EC001A4291 /* Giffy.xcdatamodel */,
-			);
-			currentVersion = 4457D0EE1D8657EC001A4291 /* Giffy.xcdatamodel */;
-			path = Giffy.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4457D0D61D8657EC001A4291 /* Project object */;
 }

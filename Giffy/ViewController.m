@@ -55,6 +55,17 @@
     tableVC.tag = tag;
 }
 
+#pragma mark Lazy
+
+- (NSArray *)tagSuggestions {
+    if (!_tagSuggestions) {
+        _tagSuggestions = [NSArray array];
+    }
+    return _tagSuggestions;
+}
+
+#pragma mark - UITextFieldDelegate
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     NSString *substring = textField.text;
@@ -80,15 +91,6 @@
     self.tagSuggestions = [self.tagSuggestions subarrayWithRange:NSMakeRange(0, MIN(self.tagSuggestions.count, 5))];
     
     [self.suggestionsTable reloadData];
-}
-
-#pragma mark - Lazy
-
-- (NSArray *)tagSuggestions {
-    if (!_tagSuggestions) {
-        _tagSuggestions = [NSArray array];
-    }
-    return _tagSuggestions;
 }
 
 #pragma mark - Table View

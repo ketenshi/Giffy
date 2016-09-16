@@ -40,7 +40,8 @@
     self.searchController.delegate = self;
     
     self.searchController.searchBar.delegate = self;
-    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+//    self.tableView.tableHeaderView = self.searchController.searchBar;
     
     [self updateTableResults];
     
@@ -150,17 +151,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
     
-//    if (self.imageIDs.count > indexPath.row) {
     Gif *gif = self.dataSource[indexPath.row];
     
-    
-        NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.thumbnailPath];
-    
-    
-        cell.imageView.image = [UIImage imageWithData:imageData];
-//    }
+    NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.thumbnailPath];
+    cell.imageView.image = [UIImage imageWithData:imageData];
 
-    cell.textLabel.text = self.dataSource[indexPath.row].identifier;
+    cell.textLabel.text = gif.tags;
     
     return cell;
 }

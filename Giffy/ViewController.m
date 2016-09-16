@@ -29,6 +29,13 @@
     self.suggestionsTable.delegate = self;
     self.suggestionsTable.dataSource = self;
     self.suggestionsTable.hidden = YES;
+    
+    self.title = @"Giffy";
+    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Search", nil)
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:nil
+                                                                     action:nil];
+    self.navigationItem.backBarButtonItem = backBarButton;
 }
 
 
@@ -38,7 +45,6 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
     TableViewController *tableVC = (TableViewController *)segue.destinationViewController;
     
     NSString *tag = @"happy";

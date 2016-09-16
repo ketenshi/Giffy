@@ -10,6 +10,9 @@
 
 @interface TagsHelper : NSObject
 
+@property (strong, nonatomic, readonly) NSArray *tags;
+
 + (instancetype)defaultTagsHelper;
+- (NSArray *)tagSuggestionsWithSubstring:(NSString *)substring limit:(NSUInteger)limit;
 
 @end

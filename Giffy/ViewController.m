@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #import "TableViewController.h"
+#import "TagsHelper.h"
 
 @interface ViewController () <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -79,16 +80,7 @@
     
     self.suggestionsTable.hidden = NO;
     
-    self.tagSuggestions = nil;
-    
-    NSString *tagFilePath = [[NSBundle mainBundle] pathForResource:@"tags" ofType:@"json"];
-    NSData *tagData = [NSData dataWithContentsOfFile:tagFilePath];
-    NSArray *tagsArray = [NSJSONSerialization JSONObjectWithData:tagData options:0 error:nil];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH %@", substring];
-    self.tagSuggestions = [tagsArray filteredArrayUsingPredicate:predicate];
-    
-    self.tagSuggestions = [self.tagSuggestions subarrayWithRange:NSMakeRange(0, MIN(self.tagSuggestions.count, 5))];
+    self.tagSuggestions = [[TagsHelper defaultTagsHelper] tagSuggestionsWithSubstring:substring limit:5];
     
     [self.suggestionsTable reloadData];
 }

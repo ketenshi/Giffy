@@ -27,6 +27,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareGif:)];
+    
     NSData *gifData = [[NSFileManager defaultManager] contentsAtPath:self.gif.imagePath];
     
     FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
@@ -58,6 +60,13 @@
         [hashTags appendFormat:@"#%@ ", tag];
     }
     return hashTags;
+}
+
+- (void)shareGif:(id)sender {
+    NSData *gifData = [[NSFileManager defaultManager] contentsAtPath:self.gif.imagePath];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[gifData] applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 /*

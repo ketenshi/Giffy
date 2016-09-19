@@ -10,10 +10,15 @@
 
 @import UIKit;
 
+// NSCoding keys
 static NSString * const identifierKey = @"identifier";
 static NSString * const tagsKey = @"tags";
 static NSString * const webURLKey = @"webURL";
 static NSString * const imageDownloadedKey = @"imageDownloaded";
+static NSString * const ratingKey = @"rating";
+
+// NSNotification key
+NSString * const gifDataDidChangeNotification = @"gifDataDidChangeNotification";
 
 typedef NS_ENUM(NSInteger, imageScaleOption) {
     imageScaleOptionFit,
@@ -38,6 +43,7 @@ typedef NS_ENUM(NSInteger, imageScaleOption) {
     self.tags = [aDecoder decodeObjectForKey:tagsKey];
     self.webURL = [aDecoder decodeObjectForKey:webURLKey];
     self.imageDownloaded = [aDecoder decodeBoolForKey:imageDownloadedKey];
+    self.rating = [aDecoder decodeIntegerForKey:ratingKey];
     
     return self;
 }
@@ -47,12 +53,15 @@ typedef NS_ENUM(NSInteger, imageScaleOption) {
     [aCoder encodeObject:self.tags forKey:tagsKey];
     [aCoder encodeObject:self.webURL forKey:webURLKey];
     [aCoder encodeBool:self.imageDownloaded forKey:imageDownloadedKey];
+    [aCoder encodeInteger:self.rating forKey:ratingKey];
 }
 
 - (void)saveData {
     NSString *documentsPath = [[self databaseFilePath] stringByAppendingPathComponent:@"data.plist"];
     
     [NSKeyedArchiver archiveRootObject:self toFile:documentsPath];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:gifDataDidChangeNotification object:self];
 }
 
 - (void)saveImage:(NSURL *)tempLocation {

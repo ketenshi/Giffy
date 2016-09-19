@@ -15,7 +15,9 @@
 @interface GifDetailViewController()
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *tags;
+@property (weak, nonatomic) IBOutlet UILabel *rating;
+@property (weak, nonatomic) IBOutlet UISlider *ratingSlider;
 
 @end
 
@@ -31,13 +33,31 @@
     
     self.imageView.animatedImage = animatedImage;
     
-    
-    self.label.text = self.gif.tags;
+    self.tags.text = [self formattedHashTags];
+    self.rating.text = [NSString stringWithFormat:@"%.1f",self.gif.rating/2.0];
+    self.ratingSlider.value = self.gif.rating/2.0;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)rateChange:(UISlider *)slider {
+    CGFloat val = roundf(slider.value * 2)/2; // ensure we only get multiples of 0.5
+    
+    self.rating.text = [NSString stringWithFormat:@"%.1f",val];
+    
+    self.gif.rating = val * 2;
+    [self.gif saveData];
+}
+
+- (NSString *)formattedHashTags {
+    NSMutableString *hashTags = [NSMutableString string];
+    for (NSString *tag in self.gif.tags) {
+        [hashTags appendFormat:@"#%@ ", tag];
+    }
+    return hashTags;
 }
 
 /*

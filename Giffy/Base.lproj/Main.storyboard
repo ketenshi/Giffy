@@ -127,19 +127,39 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="klO-U8-UxR">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="iVO-a4-ARs"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="rateChange:" destination="8K7-nM-5NO" eventType="valueChanged" id="whR-FX-VXK"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsj-D3-0jw">
+                                <frame key="frameInset" minX="265" minY="399" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="klO-U8-UxR" firstAttribute="leading" secondItem="zMM-ad-UN2" secondAttribute="leadingMargin" constant="13" id="G2m-nu-7DX"/>
                             <constraint firstItem="kiI-Hl-9Ss" firstAttribute="leading" secondItem="zMM-ad-UN2" secondAttribute="leadingMargin" constant="13" id="GQl-5Z-nUi"/>
-                            <constraint firstItem="kiI-Hl-9Ss" firstAttribute="top" secondItem="wtp-mL-mVo" secondAttribute="bottom" constant="40" id="KH5-cx-wXv"/>
+                            <constraint firstItem="kiI-Hl-9Ss" firstAttribute="top" secondItem="wtp-mL-mVo" secondAttribute="bottom" constant="-232" id="KH5-cx-wXv"/>
                             <constraint firstItem="wtp-mL-mVo" firstAttribute="top" secondItem="YVA-EP-QVB" secondAttribute="bottom" constant="58" id="N48-m2-RlW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kiI-Hl-9Ss" secondAttribute="trailing" constant="119" id="wEp-KD-oPb"/>
+                            <constraint firstItem="klO-U8-UxR" firstAttribute="top" secondItem="kiI-Hl-9Ss" secondAttribute="bottom" constant="294" id="fH4-iM-VB6"/>
+                            <constraint firstItem="kiI-Hl-9Ss" firstAttribute="trailing" secondItem="zMM-ad-UN2" secondAttribute="trailingMargin" id="ka2-zu-dxM"/>
+                            <constraint firstItem="klO-U8-UxR" firstAttribute="trailing" secondItem="zMM-ad-UN2" secondAttribute="trailingMargin" constant="-110" id="qd5-FE-a0M"/>
                             <constraint firstItem="wtp-mL-mVo" firstAttribute="centerX" secondItem="zMM-ad-UN2" secondAttribute="centerX" id="yBn-gH-B7B"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="wtp-mL-mVo" id="JiJ-Kl-Kev"/>
-                        <outlet property="label" destination="kiI-Hl-9Ss" id="TSh-eX-kBx"/>
+                        <outlet property="rating" destination="Wsj-D3-0jw" id="FiF-d5-40C"/>
+                        <outlet property="ratingSlider" destination="klO-U8-UxR" id="jSV-rc-sIB"/>
+                        <outlet property="tags" destination="kiI-Hl-9Ss" id="cx1-gd-ZK6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUz-CT-GV3" userLabel="First Responder" sceneMemberID="firstResponder"/>

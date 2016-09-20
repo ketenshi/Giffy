@@ -12,6 +12,9 @@
 #import "GifDetailViewController.h"
 #import "GifDatabase.h"
 
+#import "RatingView.h"
+#import "TableViewCell.h"
+
 @interface TableViewController () <NSURLSessionDownloadDelegate>
 
 @property (nonatomic) NSUInteger currentPage;
@@ -132,14 +135,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
+    TableViewCell *cell = (TableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
     
     Gif *gif = self.dataSource[indexPath.row];
     
     NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.thumbnailPath];
     cell.imageView.image = [UIImage imageWithData:imageData];
-
-    cell.textLabel.text = [gif.tags componentsJoinedByString:@", "];
+    
+    cell.ratingView.ratingValue = gif.rating / 2.0;
     
     return cell;
 }

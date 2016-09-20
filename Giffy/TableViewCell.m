@@ -8,6 +8,8 @@
 
 #import "TableViewCell.h"
 
+#import "RatingView.h"
+
 @implementation TableViewCell
 
 - (void)awakeFromNib {

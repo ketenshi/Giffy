@@ -77,14 +77,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="v3A-Y7-egh" customClass="TableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="tableCell" id="v3A-Y7-egh" customClass="TableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v3A-Y7-egh" id="aTv-nl-Buh">
-                                    <frame key="frameInset" width="375" height="59.5"/>
+                                    <frame key="frameInset" width="342" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MnE-a8-fW9" customClass="RatingView">
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="IsP-Zo-kGk"/>
+                                                <constraint firstAttribute="height" constant="20" id="Pqk-eU-ItA"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MnE-a8-fW9" firstAttribute="centerY" secondItem="aTv-nl-Buh" secondAttribute="centerY" id="Eg8-qP-LtZ"/>
+                                        <constraint firstItem="MnE-a8-fW9" firstAttribute="trailing" secondItem="aTv-nl-Buh" secondAttribute="trailingMargin" id="cjY-vu-15M"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="ratingView" destination="MnE-a8-fW9" id="TBj-MY-iSB"/>
                                     <segue destination="8K7-nM-5NO" kind="show" id="d2a-i0-1xk"/>
                                 </connections>
                             </tableViewCell>
@@ -98,7 +112,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rju-qm-4TG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1526" y="42"/>
+            <point key="canvasLocation" x="1525.5999999999999" y="41.829085457271368"/>
         </scene>
         <!--Gif Detail View Controller-->
         <scene sceneID="UxN-J8-sgu">
@@ -127,9 +141,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="klO-U8-UxR">
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="klO-U8-UxR">
+                                <frame key="frameInset" minX="27" minY="380" width="124" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="iVO-a4-ARs"/>
+                                    <constraint firstAttribute="height" constant="40" id="2Ap-cv-IWj"/>
+                                    <constraint firstAttribute="width" constant="120" id="YmT-uU-OaB"/>
                                 </constraints>
                                 <connections>
                                     <action selector="rateChange:" destination="8K7-nM-5NO" eventType="valueChanged" id="whR-FX-VXK"/>
@@ -142,22 +158,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hov-2G-cqa" customClass="RatingView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="831-i1-iti"/>
+                                    <constraint firstAttribute="width" constant="120" id="vFg-eC-q5m"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="klO-U8-UxR" firstAttribute="leading" secondItem="zMM-ad-UN2" secondAttribute="leadingMargin" constant="13" id="G2m-nu-7DX"/>
+                            <constraint firstItem="hov-2G-cqa" firstAttribute="top" secondItem="wtp-mL-mVo" secondAttribute="bottom" constant="73" id="2cC-gd-QCy"/>
                             <constraint firstItem="kiI-Hl-9Ss" firstAttribute="leading" secondItem="zMM-ad-UN2" secondAttribute="leadingMargin" constant="13" id="GQl-5Z-nUi"/>
                             <constraint firstItem="kiI-Hl-9Ss" firstAttribute="top" secondItem="wtp-mL-mVo" secondAttribute="bottom" constant="-232" id="KH5-cx-wXv"/>
                             <constraint firstItem="wtp-mL-mVo" firstAttribute="top" secondItem="YVA-EP-QVB" secondAttribute="bottom" constant="58" id="N48-m2-RlW"/>
-                            <constraint firstItem="klO-U8-UxR" firstAttribute="top" secondItem="kiI-Hl-9Ss" secondAttribute="bottom" constant="294" id="fH4-iM-VB6"/>
+                            <constraint firstItem="klO-U8-UxR" firstAttribute="top" secondItem="hov-2G-cqa" secondAttribute="top" id="Qlb-dV-Z6O"/>
+                            <constraint firstItem="hov-2G-cqa" firstAttribute="leading" secondItem="zMM-ad-UN2" secondAttribute="leadingMargin" constant="13" id="THv-bq-pNv"/>
                             <constraint firstItem="kiI-Hl-9Ss" firstAttribute="trailing" secondItem="zMM-ad-UN2" secondAttribute="trailingMargin" id="ka2-zu-dxM"/>
-                            <constraint firstItem="klO-U8-UxR" firstAttribute="trailing" secondItem="zMM-ad-UN2" secondAttribute="trailingMargin" constant="-110" id="qd5-FE-a0M"/>
+                            <constraint firstItem="klO-U8-UxR" firstAttribute="leading" secondItem="hov-2G-cqa" secondAttribute="leading" id="uxm-RF-Rv9"/>
                             <constraint firstItem="wtp-mL-mVo" firstAttribute="centerX" secondItem="zMM-ad-UN2" secondAttribute="centerX" id="yBn-gH-B7B"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="wtp-mL-mVo" id="JiJ-Kl-Kev"/>
                         <outlet property="rating" destination="Wsj-D3-0jw" id="FiF-d5-40C"/>
+                        <outlet property="ratingCircles" destination="hov-2G-cqa" id="M3K-ux-Zq5"/>
                         <outlet property="ratingSlider" destination="klO-U8-UxR" id="jSV-rc-sIB"/>
                         <outlet property="tags" destination="kiI-Hl-9Ss" id="cx1-gd-ZK6"/>
                     </connections>

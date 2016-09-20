@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		442A3E3E1D8F91FB00D337BC /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 442A3E3D1D8F91FB00D337BC /* RatingView.m */; };
 		4457D0E31D8657EC001A4291 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457D0E21D8657EC001A4291 /* main.m */; };
 		4457D0E61D8657EC001A4291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457D0E51D8657EC001A4291 /* AppDelegate.m */; };
 		4457D0E91D8657EC001A4291 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457D0E81D8657EC001A4291 /* ViewController.m */; };
@@ -50,6 +51,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		442A3E3C1D8F91FB00D337BC /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
+		442A3E3D1D8F91FB00D337BC /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
 		4457D0DE1D8657EC001A4291 /* Giffy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giffy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4457D0E21D8657EC001A4291 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4457D0E41D8657EC001A4291 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 				44C17D0D1D88BE7D0068A5E4 /* TableViewCell.m */,
 				44C17D0F1D88DC7C0068A5E4 /* Gif.h */,
 				44C17D101D88DC7C0068A5E4 /* Gif.m */,
+				442A3E3C1D8F91FB00D337BC /* RatingView.h */,
+				442A3E3D1D8F91FB00D337BC /* RatingView.m */,
 				44C17D121D88F9D60068A5E4 /* GifDatabase.h */,
 				44C17D131D88F9D60068A5E4 /* GifDatabase.m */,
 				44C17D091D88B6490068A5E4 /* GifDetailViewController.h */,
@@ -288,6 +293,7 @@
 				4457D0E91D8657EC001A4291 /* ViewController.m in Sources */,
 				44C17D141D88F9D60068A5E4 /* GifDatabase.m in Sources */,
 				4457D0E61D8657EC001A4291 /* AppDelegate.m in Sources */,
+				442A3E3E1D8F91FB00D337BC /* RatingView.m in Sources */,
 				44C17D0B1D88B6490068A5E4 /* GifDetailViewController.m in Sources */,
 				4457D0E31D8657EC001A4291 /* main.m in Sources */,
 				44C835AF1D8857A800993F3E /* TableViewController.m in Sources */,

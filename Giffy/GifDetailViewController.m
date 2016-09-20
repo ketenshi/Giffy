@@ -9,6 +9,7 @@
 #import "GifDetailViewController.h"
 
 #import "Gif.h"
+#import "RatingView.h"
 
 #import <FLAnimatedImage/FLAnimatedImage.h>
 
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tags;
 @property (weak, nonatomic) IBOutlet UILabel *rating;
 @property (weak, nonatomic) IBOutlet UISlider *ratingSlider;
+@property (weak, nonatomic) IBOutlet RatingView *ratingCircles;
 
 @end
 
@@ -38,6 +40,9 @@
     self.tags.text = [self formattedHashTags];
     self.rating.text = [NSString stringWithFormat:@"%.1f",self.gif.rating/2.0];
     self.ratingSlider.value = self.gif.rating/2.0;
+    
+    self.ratingCircles.ratingValue = self.gif.rating/2.0;
+//    [self.ratingCircles update];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +54,7 @@
     CGFloat val = roundf(slider.value * 2)/2; // ensure we only get multiples of 0.5
     
     self.rating.text = [NSString stringWithFormat:@"%.1f",val];
+    self.ratingCircles.ratingValue = self.gif.rating/2.0;
     
     self.gif.rating = val * 2;
     [self.gif saveData];

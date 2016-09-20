@@ -9,7 +9,6 @@
 #import "GifDatabase.h"
 
 #import "Gif.h"
-
 @implementation GifDatabase
 
 + (instancetype)sharedDatabase {
@@ -51,6 +50,8 @@
     gif.webURL = gifData[@"url"];
     
     [gif saveData];
+    
+    [self.dataSource addObject:gif];
     
     return gif;
 }

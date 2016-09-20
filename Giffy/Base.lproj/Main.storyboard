@@ -45,6 +45,14 @@
                                     <constraint firstAttribute="height" constant="217" id="Boj-vc-KiU"/>
                                 </constraints>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for Gif" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCp-e8-D0Q">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="QX2-HB-fZu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -52,6 +60,9 @@
                             <constraint firstItem="JnG-Wl-YNH" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Fbz-xS-2L8"/>
                             <constraint firstItem="JnG-Wl-YNH" firstAttribute="top" secondItem="r3Y-rg-Je2" secondAttribute="bottom" constant="8" id="LdC-eg-obb"/>
                             <constraint firstItem="R7s-dR-UGv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Rgt-PN-LjW"/>
+                            <constraint firstItem="bCp-e8-D0Q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Syf-cf-0DS"/>
+                            <constraint firstItem="bCp-e8-D0Q" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="UEn-cs-Pyc"/>
+                            <constraint firstItem="bCp-e8-D0Q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="28" id="Wpf-Tf-1J9"/>
                             <constraint firstItem="JnG-Wl-YNH" firstAttribute="top" secondItem="R7s-dR-UGv" secondAttribute="bottom" constant="8" id="msu-Xc-4ly"/>
                             <constraint firstItem="JnG-Wl-YNH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="onD-B8-zwy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r3Y-rg-Je2" secondAttribute="trailing" constant="26" id="s8o-69-ldG"/>
@@ -151,13 +162,6 @@
                                     <action selector="rateChange:" destination="8K7-nM-5NO" eventType="valueChanged" id="whR-FX-VXK"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsj-D3-0jw">
-                                <frame key="frameInset" minX="265" minY="399" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hov-2G-cqa" customClass="RatingView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -165,6 +169,20 @@
                                     <constraint firstAttribute="width" constant="120" id="vFg-eC-q5m"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e60-4P-ye7">
+                                <frame key="frameInset" minX="29" minY="360" width="57" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsj-D3-0jw">
+                                <frame key="frameInset" minX="94" minY="360" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

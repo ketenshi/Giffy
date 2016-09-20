@@ -140,7 +140,7 @@
     Gif *gif = self.dataSource[indexPath.row];
     
     NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:gif.thumbnailPath];
-    cell.imageView.image = [UIImage imageWithData:imageData];
+    cell.imageView.image = [UIImage imageWithData:imageData]? : [UIImage imageNamed:@"thumbnail_placeholder"];
     
     cell.ratingView.ratingValue = gif.rating / 2.0;
     
